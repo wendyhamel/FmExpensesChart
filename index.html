@@ -8,36 +8,73 @@
   
   <title>Frontend Mentor | Expenses chart component</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <!--    Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Alpine Core -->
+  <script defer src="https://unpkg.com/alpinejs@latest/dist/cdn.min.js"></script>
+
+  <!-- Tailwind play cdn for this challenge ( for development and play purposes ) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script src="./src/tailwind.config.js"></script>
+
 </head>
-<body>
+<body x-data="balance()" x-init="checkDay()" class="text-lg bg-cream antialiased">
 
-  My balance
-  $921.48
+  <main class="p-4 space-y-4 grid grid-cols-[min(_100%,_440px)] place-content-center min-h-[100dvh]">
+    <section class="bg-red text-pale-orange rounded-xl py-5 px-4 flex justify-between items-center">
+      <div>
+        <p class="text-base pb-0.5">My balance</p>
+        <p class="text-2xl font-bold">$921.48</p>
+      </div>
+      <div class="p-2">
+        <img class="w-16" src="./images/logo.svg" alt="logo">
+      </div>
+    </section>
 
-  Spending - Last 7 days
+    <section class="bg-pale-orange rounded-xl py-5 px-4 text-dark-brown space-y-6">
+      <h1 class="text-2xl font-bold">Spending - Last 7 days</h1>
 
-  mon
-  tue
-  wed
-  thu
-  fri
-  sat
-  sun
+      <ul class="grid grid-cols-7 auto-rows-auto gap-3 border-b-2 border-cream py-6 h-60">
+        <template x-for="spending in spendingPerDay">
+          <li class="relative grow flex flex-col w-full group cursor-pointer">
+            <div class="grow"></div>
+            <div
+                  :class="spending.today ? 'bg-cyan ' + spending.height : 'bg-red ' + spending.height"
+                  class="rounded flex justify-center group-hover:bg-opacity-70 w-full"
+            >
+              <p class="absolute -translate-y-10 hidden group-hover:block rounded bg-dark-brown p-1.5 -mx-2 text-pale-orange text-center text-sm font-bold" x-text="'$' + spending.amount"></p>
+            </div>
+            <p class="text-sm text-center text-light-brown pt-2" x-text="spending.day"></p>
+          </li>
+        </template>
+      </ul>
 
-  Total this month
-  $478.33
+      <div class="grid grid-cols-2">
+        <div>
+          <p class="text-base text-light-brown pb-0.5">Total this month</p>
+          <p class="text-3xl font-bold">$478.33</p>
+        </div>
 
-  +2.4%
-  from last month
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+        <div class="place-self-end text-end">
+          <p class="text-base font-bold leading-none">+2.4%</p>
+          <p class="text-base text-light-brown">from last month</p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="fixed bottom-0 inset-x-0 bg-white/90 opacity-0 translate-y-2 py-2 text-xs text-dark-brown text-center hover:opacity-90 hover:translate-y-0 transition ease-out duration-300">
+      Challenge by <a class="text-dark-brown hover:text-red hover:underline ease-in-out duration-150" href="https://www.frontendmentor.io/challenges/expenses-chart-component-e7yJBUdjwt" target="_blank">Frontend Mentor</a>.
+      Coded by <a class="text-dark-brown hover:text-red hover:underline ease-in-out duration-150" href="https://www.frontendmentor.io/profile/wendyhamel" target="_blank">Wendy Hamel</a>.
+    </div>
+  </footer>
+
+  <script src="./src/spendings.js"></script>
 </body>
 </html>
