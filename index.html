@@ -25,18 +25,18 @@
 <body x-data="balance()" x-init="checkDay()" class="text-lg bg-cream antialiased">
 
   <main class="p-4 space-y-4 grid grid-cols-[min(_100%,_440px)] place-content-center min-h-[100dvh]">
-    <section class="bg-red text-pale-orange rounded-xl py-5 px-4 flex justify-between items-center">
+    <section class="bg-red text-pale-orange rounded-xl py-5 px-4 flex justify-between items-center lg:px-8 lg:py-6">
       <div>
-        <p class="text-base pb-0.5">My balance</p>
-        <p class="text-2xl font-bold">$921.48</p>
+        <p class="text-base pb-0.5 lg:pb-1">My balance</p>
+        <p class="text-2xl font-bold lg:text-3xl">$921.48</p>
       </div>
       <div class="p-2">
-        <img class="w-16" src="./images/logo.svg" alt="logo">
+        <img class="w-16 lg:w-20" src="./images/logo.svg" alt="logo">
       </div>
     </section>
 
-    <section class="bg-pale-orange rounded-xl py-5 px-4 text-dark-brown space-y-6">
-      <h1 class="text-2xl font-bold">Spending - Last 7 days</h1>
+    <section class="bg-pale-orange rounded-xl py-5 px-4 text-dark-brown space-y-6 lg:p-8">
+      <h1 class="text-2xl font-bold lg:text-3xl">Spending - Last 7 days</h1>
 
       <ul class="grid grid-cols-7 auto-rows-auto gap-3 border-b-2 border-cream py-6 h-60">
         <template x-for="spending in spendingPerDay">
@@ -48,7 +48,7 @@
             >
               <p class="absolute -translate-y-10 hidden group-hover:block rounded bg-dark-brown p-1.5 -mx-2 text-pale-orange text-center text-sm font-bold" x-text="'$' + spending.amount"></p>
             </div>
-            <p class="text-sm text-center text-light-brown pt-2" x-text="spending.day"></p>
+            <p class="text-sm text-center text-light-brown pt-2 lg:text-base" x-text="spending.day"></p>
           </li>
         </template>
       </ul>
@@ -56,7 +56,7 @@
       <div class="grid grid-cols-2">
         <div>
           <p class="text-base text-light-brown pb-0.5">Total this month</p>
-          <p class="text-3xl font-bold">$478.33</p>
+          <p class="text-3xl font-bold lg:text-5xl">$478.33</p>
         </div>
 
         <div class="place-self-end text-end">
